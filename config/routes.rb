@@ -5,10 +5,8 @@ Rails.application.routes.draw do
       post   '/signin',       to: 'authentication/sessions#create'
       delete '/signout',      to: 'devise/sessions#destroy'
       post   '/signup',       to: 'authentication/registrations#create'
-      #put    '/account',      to: 'registrations#update'
-      #delete '/account',      to: 'registrations#destroy'
-      #put    '/password',     to: 'devise/passwords#update'
-      #post   '/password',     to: 'devise/passwords#create'
+      put    '/password',     to: 'authentication/passwords#update', as: :edit_user_password
+      post   '/password',     to: 'authentication/passwords#create'
       get    '/confirmation', to: 'authentication/confirmations#show'
       #post   '/unlock',       to: 'devise/unlocks#create'
       #get    '/unlock',       to: 'devise/unlocks#show'
