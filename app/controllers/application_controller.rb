@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::API
+  include ActionController::MimeResponds
+
+  respond_to :json
   rescue_from NoMethodError, with: :no_method
   rescue_from ActiveRecord::RecordNotFound, with: :not_found_record
   rescue_from ActiveRecord::RecordNotDestroyed, with: :not_destroyed
