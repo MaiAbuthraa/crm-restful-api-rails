@@ -1,10 +1,8 @@
-class Api::V1::ContactsController < ApplicationController
+class Api::V1::ContactsController < AuthenticationController
   before_action :set_contact, only: [:show, :update, :destroy]
 
   def index
-    @contacts = Contact.all
-
-    render json: @contacts
+    render json: Contact.all
   end
 
   def show

@@ -2,12 +2,12 @@ Rails.application.routes.draw do
   devise_for :users, skip: :all
   devise_scope :user do
     scope :user, defaults: { format: :json } do
-      post   '/signin',       to: 'authentication/sessions#create'
+      post   '/signin',       to: 'users/sessions#create'
       delete '/signout',      to: 'devise/sessions#destroy'
-      post   '/signup',       to: 'authentication/registrations#create'
-      put    '/password',     to: 'authentication/passwords#update', as: :edit_user_password
-      post   '/password',     to: 'authentication/passwords#create'
-      get    '/confirmation', to: 'authentication/confirmations#show'
+      post   '/signup',       to: 'users/registrations#create'
+      put    '/password',     to: 'users/passwords#update', as: :edit_user_password
+      post   '/password',     to: 'users/passwords#create'
+      get    '/confirmation', to: 'users/confirmations#show'
       #post   '/unlock',       to: 'devise/unlocks#create'
       #get    '/unlock',       to: 'devise/unlocks#show'
     end
