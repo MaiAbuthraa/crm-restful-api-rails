@@ -4,11 +4,11 @@ Build CRM restful api, by using Rails 6 and PSQL (Experiment)
 
 1. Use rack-cors:
 
-1. add the gem then `bundle install`
+a. add the gem then `bundle install`
 ```
 gem 'rack-cors'
 ```
-2. Update file `config/initializers/cors.rb`
+b. Update file `config/initializers/cors.rb`
 ```
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
@@ -23,18 +23,18 @@ end
 
 2. Devise:
 
-1. Install gem & follow the inststuctions.
+a. Install gem & follow the inststuctions.
 
-2. Create custom `FailureApp`
+b. Create custom `FailureApp`
 
-1.  add this config (config/initializers/devise.rb):
+b.1  add this config (config/initializers/devise.rb):
 ```
   config.warden do |manager|
     manager.failure_app = CustomDeviseFailureApp
   end
 ```
 
-2. Create CustomDeviseFailureApp (lib/custom_devise_failure_app.rb):
+b.2 Create CustomDeviseFailureApp (lib/custom_devise_failure_app.rb):
 ```
 class CustomDeviseFailureApp < Devise::FailureApp
   def respond
@@ -100,12 +100,12 @@ end
 5. Use 'simple_token_authentication' gem to generate `authentication token`:
 
 
-1.  add the gem then `bundle install`
+a.  add the gem then `bundle install`
 ```
 gem 'simple_token_authentication', '~> 1.0'
 ```
 
-2. `rails g migration add_authentication_token_to_users "authentication_token:string{30}:uniq"`.
+b. `rails g migration add_authentication_token_to_users "authentication_token:string{30}:uniq"`.
 
 
 
