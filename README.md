@@ -107,9 +107,7 @@ gem 'simple_token_authentication', '~> 1.0'
 
 b. `rails g migration add_authentication_token_to_users "authentication_token:string{30}:uniq"`.
 
-
-
-3. `rake db:migrate`
+c. `rake db:migrate`
 
 
 
