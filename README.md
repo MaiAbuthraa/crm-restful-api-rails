@@ -8,6 +8,7 @@ a. add the gem then `bundle install`
 ```
 gem 'rack-cors'
 ```
+
 b. Update file `config/initializers/cors.rb`
 ```
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
@@ -100,14 +101,15 @@ end
 5. Use 'simple_token_authentication' gem to generate `authentication token`:
 
 
-a.  add the gem then `bundle install`
-```
-gem 'simple_token_authentication', '~> 1.0'
-```
+  a.  add the gem then `bundle install`
+  ```
+  gem 'simple_token_authentication', '~> 1.0'
+  ```
 
-b. `rails g migration add_authentication_token_to_users "authentication_token:string{30}:uniq"`.
+  b. `rails g migration add_authentication_token_to_users "authentication_token:string{30}:uniq"`.
 
-c. `rake db:migrate`
+  c. `rake db:migrate`
+
 
 
 
