@@ -114,3 +114,9 @@ end
 
 
 
+Use Jbuilder
+Jbuilder gives you a simple DSL for declaring JSON structures that beats manipulating giant hash structures
+https://github.com/rails/jbuilder
+
+or ActiveModelSerializers
+https://github.com/rails-api/active_model_serializers
