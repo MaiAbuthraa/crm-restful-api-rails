@@ -1,4 +1,4 @@
-class Api::V1::ContactsController < AuthenticationController
+class V1::ContactsController < AuthenticationController
   before_action :set_contact, only: [:show, :update, :destroy]
 
   def index
