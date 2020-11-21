@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     scope :user, defaults: { format: :json } do
       post   '/signin',       to: 'users/sessions#create'
-      delete '/signout',      to: 'devise/sessions#destroy'
+      delete '/signout',      to: 'users/sessions#destroy'
       post   '/signup',       to: 'users/registrations#create'
       put    '/password',     to: 'users/passwords#update', as: :edit_user_password
       post   '/password',     to: 'users/passwords#create'
@@ -13,10 +13,8 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :api do
-    namespace :v1 do
-      resources :contacts
-    end
+  namespace :v1 do
+    resources :contacts
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

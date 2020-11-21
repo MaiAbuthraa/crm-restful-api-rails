@@ -1,6 +1,6 @@
 class CustomDeviseFailureApp < Devise::FailureApp
   def respond
-    if request.controller_class.to_s.start_with? 'Api::'
+    if request.controller_class.to_s.start_with? 'V1::'
       json_api_error_response
     else
       super
