@@ -6,5 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable
 
-  has_many :customers
+  has_many :customers,  foreign_key: :created_by_id
+  has_many :contacts,  foreign_key: :created_by_id
+  has_many :orders,  foreign_key: :created_by_id
 end
