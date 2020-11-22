@@ -19,14 +19,12 @@ ActiveRecord::Schema.define(version: 2020_11_21_210100) do
     t.string "name"
     t.string "email"
     t.string "phone"
-    t.bigint "customers_id"
-    t.bigint "users_id"
+    t.bigint "customer_id"
     t.integer "created_by_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["created_by_id"], name: "index_contacts_on_created_by_id"
-    t.index ["customers_id"], name: "index_contacts_on_customers_id"
-    t.index ["users_id"], name: "index_contacts_on_users_id"
+    t.index ["customer_id"], name: "index_contacts_on_customer_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -41,15 +39,15 @@ ActiveRecord::Schema.define(version: 2020_11_21_210100) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.bigint "customers_id"
+    t.bigint "customer_id"
+    t.integer "created_by_id"
+    t.integer "status"
     t.boolean "active", default: true
     t.text "description"
-    t.integer "status"
-    t.integer "created_by_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["created_by_id"], name: "index_orders_on_created_by_id"
-    t.index ["customers_id"], name: "index_orders_on_customers_id"
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -71,9 +69,9 @@ ActiveRecord::Schema.define(version: 2020_11_21_210100) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "contacts", "customers", column: "customers_id"
+  add_foreign_key "contacts", "customers"
   add_foreign_key "contacts", "users", column: "created_by_id"
   add_foreign_key "customers", "users", column: "created_by_id"
-  add_foreign_key "orders", "customers", column: "customers_id"
+  add_foreign_key "orders", "customers"
   add_foreign_key "orders", "users", column: "created_by_id"
 end
