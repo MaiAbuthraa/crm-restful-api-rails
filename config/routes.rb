@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       put    '/password',     to: 'users/passwords#update', as: :edit_user_password
       post   '/password',     to: 'users/passwords#create'
       get    '/confirmation', to: 'users/confirmations#show'
+      post    '/confirmation', to: 'users/confirmations#create'
       #post   '/unlock',       to: 'devise/unlocks#create'
       #get    '/unlock',       to: 'devise/unlocks#show'
     end
