@@ -1,14 +1,15 @@
 class V1::ContactsController < AuthenticationController
+  expose :contacts, -> { Customer.find(params[:customer_id].to_i).contacts }
   before_action :set_contact, only: [:show, :update, :destroy]
 
   def index
-    @contacts = Contact.all.includes(:created_by)
+    @contacts = contacts.includes(:created_by)
 
     render :index, status: :ok
   end
 
   def show
-    render json: @contact
+    render :show, status: :ok
   end
 
   def create
