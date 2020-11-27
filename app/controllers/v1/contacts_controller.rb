@@ -2,7 +2,9 @@ class V1::ContactsController < AuthenticationController
   before_action :set_contact, only: [:show, :update, :destroy]
 
   def index
-    render json: Contact.all
+    @contacts = Contact.all
+
+    render :index, status: :ok
   end
 
   def show
