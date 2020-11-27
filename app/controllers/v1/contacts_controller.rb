@@ -1,8 +1,11 @@
-class V1::ContactsController < AuthenticationController
-  expose :contacts, -> { Customer.find(params[:customer_id].to_i).contacts }
+class V1::ContactsController < V1::AuthenticationController
+  expose :contacts, -> { @customer.contacts }
+
+  before_action :set_customer
   before_action :set_contact, only: [:show, :update, :destroy]
 
   def index
+    binding.pry
     @contacts = contacts.includes(:created_by)
 
     render :index, status: :ok
@@ -13,10 +16,11 @@ class V1::ContactsController < AuthenticationController
   end
 
   def create
-    @contact = Contact.new(contact_params)
+    binding.pry
+    @contact = @customer.contacts.new(contact_params)
 
     if @contact.save
-      render json: @contact, status: :created, location: url_for([:api, :v1, @contact]) 
+      render :create, status: :created, location: v1_url([@customer, @contact])
     else
       render json: @contact.errors, status: :unprocessable_entity
     end
@@ -24,7 +28,7 @@ class V1::ContactsController < AuthenticationController
 
   def update
     if @contact.update(contact_params)
-      render json: @contact
+      render :update, status: :ok
     else
       render json: @contact.errors, status: :unprocessable_entity
     end
@@ -39,13 +43,20 @@ class V1::ContactsController < AuthenticationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_contact
       @contact = Contact.find(params[:id])
     end
 
+    def set_customer
+      @customer ||= Customer.find(params[:customer_id].to_i)
+    end
+
     # Only allow a trusted parameter "white list" through.
     def contact_params
-      params.require(:contact).permit(:name, :email, :phone)
+      params.require(:contact)
+        .permit(:name, :email, :phone, :customer_id)
+        .to_h.deep_merge(
+          created_by: current_user
+        )
     end
 end
