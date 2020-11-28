@@ -9,15 +9,13 @@ Rails.application.routes.draw do
       post   '/password',     to: 'users/passwords#create'
       get    '/confirmation', to: 'users/confirmations#show'
       post    '/confirmation', to: 'users/confirmations#create'
-      #post   '/unlock',       to: 'devise/unlocks#create'
-      #get    '/unlock',       to: 'devise/unlocks#show'
     end
   end
 
   namespace :v1 do
     resources :customers do
       resources :contacts
+      resources :orders
     end
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

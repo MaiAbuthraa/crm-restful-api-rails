@@ -43,7 +43,7 @@ class V1::ContactsController < V1::AuthenticationController
 
   private
     def set_contact
-      @contact = Contact.find(params[:id])
+      @contact = @customer.contacts.find(params[:id])
     end
 
     def set_customer
@@ -53,7 +53,7 @@ class V1::ContactsController < V1::AuthenticationController
     # Only allow a trusted parameter "white list" through.
     def contact_params
       params.require(:contact)
-        .permit(:name, :email, :phone, :customer_id)
+        .permit(:name, :email, :phone)
         .merge(
           created_by: current_user
         )
