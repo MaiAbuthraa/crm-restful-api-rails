@@ -3,8 +3,6 @@ class Customer < ApplicationRecord
   has_many :orders
   has_many :contacts
 
-  validates_associated :orders, :contacts
-
   validates :name, presence: true
   validates :company_name, presence: true
   validates :category, presence: true
