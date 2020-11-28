@@ -4,5 +4,4 @@ class Contact < ApplicationRecord
 
   validates :name, presence: true
   validates :email, presence: true
-  validates :created_by_id, presence: true
 end
