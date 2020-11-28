@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
 
   namespace :v1 do
-    resources :customer do
+    resources :customers do
       resources :contacts
     end
   end

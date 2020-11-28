@@ -1,11 +1,11 @@
 class V1::ContactsController < V1::AuthenticationController
+  # no need for this, only try expose in my code
   expose :contacts, -> { @customer.contacts }
 
   before_action :set_customer
   before_action :set_contact, only: [:show, :update, :destroy]
 
   def index
-    binding.pry
     @contacts = contacts.includes(:created_by)
 
     render :index, status: :ok
@@ -16,7 +16,6 @@ class V1::ContactsController < V1::AuthenticationController
   end
 
   def create
-    binding.pry
     @contact = @customer.contacts.new(contact_params)
 
     if @contact.save
@@ -55,7 +54,7 @@ class V1::ContactsController < V1::AuthenticationController
     def contact_params
       params.require(:contact)
         .permit(:name, :email, :phone, :customer_id)
-        .to_h.deep_merge(
+        .merge(
           created_by: current_user
         )
     end
