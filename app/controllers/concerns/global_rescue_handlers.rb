@@ -13,5 +13,9 @@ module GlobalRescueHandlers
     rescue_from ActiveRecord::InvalidForeignKey do |exception|
       render json: { errors: exception }, status: :failed_dependency
     end
+
+    rescue_from CanCan::AccessDenied do |exception|
+      render json: { errors: exception}, status: :forbidden
+    end
   end
 end
