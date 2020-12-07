@@ -111,9 +111,6 @@ end
   c. `rake db:migrate`
 
 
-
-
-
 Use Jbuilder
 Jbuilder gives you a simple DSL for declaring JSON structures that beats manipulating giant hash structures
 https://github.com/rails/jbuilder
